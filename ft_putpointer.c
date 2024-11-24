@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putpointer.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jterrada <jterrada@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 14:34:34 by jterrada          #+#    #+#             */
-/*   Updated: 2024/10/25 14:53:30 by jterrada         ###   ########.fr       */
+/*   Updated: 2024/11/24 09:57:49 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,12 @@ int	ft_putpointer(void *ptr)
 	size = 0;
 	if(!ptr)
 	{
-		size += write(1, "(nil)", 5);
-		return (size);
+		return (write(1, "(nil)", 5));
 	}
-	ft_putstr("0x");
+	size += ft_putstr("0x");
 	i = (unsigned long)ptr;
-	size = ft_puthex(((unsigned long)i));
-	return (size + 2);
+	size += ft_puthex(((unsigned long)i));
+	return (size);
 }
 
 // #include <stdio.h>

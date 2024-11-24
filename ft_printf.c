@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jterrada <jterrada@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 15:15:58 by jterrada          #+#    #+#             */
-/*   Updated: 2024/10/25 14:43:59 by jterrada         ###   ########.fr       */
+/*   Updated: 2024/11/24 09:55:05 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int ft_printf_fork(va_list args, const char c)
+static int ft_printf_fork(va_list args, const char c)
 {
 	if (c == 'd' || c == 'i')
 		return (ft_putnbr(va_arg(args, int)));
@@ -34,29 +34,28 @@ int ft_printf_fork(va_list args, const char c)
 		return (-1);
 }
 
-int ft_printf(char const *format, ...)
+int ft_printf(const char *format, ...)
 {
-	va_list	args;
-	int size;
+    va_list	args;
+    int 	count;
+    int 	i;
 
-	size = 0;
-	va_start(args, format);
-	while (*format)
-	{
-		if(*format == '%')
-		{
-			format++;
-			size += ft_printf_fork(args, *format);
-			if(*format)
-				format++;
-		}
-		else
-		{
-			size += ft_putchar(*format);
-			format++;
-		}
-	}
-	return (size);
+	count = 0;
+	i = 0;
+    va_start(args, format);
+    while (format[i])
+    {
+        if (format[i] == '%' && format[i + 1])
+        {
+            count += ft_printf_fork(args, format[i + 1]);
+            i++;
+        }
+        else
+            count += ft_putchar(format[i]);
+        i++;
+    }
+    va_end(args);
+    return count;
 }
 
 // #include <stdio.h>

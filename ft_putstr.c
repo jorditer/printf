@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jterrada <jterrada@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 11:33:09 by jterrada          #+#    #+#             */
-/*   Updated: 2024/10/25 14:23:41 by jterrada         ###   ########.fr       */
+/*   Updated: 2024/10/30 23:24:45 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,10 @@ int	ft_putstr(char *s)
 
 	size = 0;
 	if (!s)
-	{
-		write(1, "(null)", 6);
-		return (6);
-	}
+		return (write(1, "(null)", 6));
 	while (*s)
 	{
-		size += ft_putchar(*s);
+		size += write(1, s, 1);
 		s++;
 	}
 	return (size);
