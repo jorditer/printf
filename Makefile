@@ -6,25 +6,24 @@ SRCS = ft_printf.c ft_putchar.c \
 
 OBJS = $(SRCS:.c=.o)
 
-CFLAGS = -Wall -Wextra -Werror -fPIC
+CFLAGS = -Wall -Wextra -Werror
+
+.c.o:
+	${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
 	ar -rcs $(NAME) $(OBJS)
 
-$(OBJS): $(SRCS)
-	gcc -c $(CFLAGS) $(SRCS)
-
 clean:
 	rm -f $(OBJS)
+	rm -f $(NAME)
 
 fclean: clean
-	rm -f $(NAME:.c=.o)
-	rm -f $(NAME:.c=.so)
+	rm -f libft.so
 
 re: fclean all
 
-so:
-	gcc  -nostartfiles -fPIC $(CFLAGS) $(SRCS)
-	gcc -nostartfiles -shared -o libft.so $(OBJS)
+so: ${OBJS}
+	gcc -shared -o libft.so $(OBJS)
