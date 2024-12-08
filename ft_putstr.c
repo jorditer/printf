@@ -6,7 +6,7 @@
 /*   By: jterrada <jterrada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 11:33:09 by jterrada          #+#    #+#             */
-/*   Updated: 2024/11/24 13:28:07 by jterrada         ###   ########.fr       */
+/*   Updated: 2024/12/08 14:29:50 by jterrada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,32 +15,18 @@
 int	ft_putstr(char *s)
 {
 	int	size;
+	int	temp;
 
 	size = 0;
 	if (!s)
 		return (write(1, "(null)", 6));
 	while (*s)
 	{
-		size += write(1, s, 1);
+		temp = write(1, s, 1);
+		if (temp < 0)
+			return (-1);
+		size += temp;
 		s++;
 	}
-	if (size < 0)
-		return (-1);
 	return (size);
 }
-// int	ft_put_s(char *str)
-// {
-// 	int	count;
-
-// 	count = 0;
-// 	if (str == NULL)
-// 		return (write(1, "(null)", 6));
-// 	while (str[count])
-// 	{
-// 		write (1, &str[count], 1);
-// 		count++;
-// 	}
-// 	if (count < 0)
-// 		return (-1);
-// 	return (count);
-// }

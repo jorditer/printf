@@ -6,24 +6,28 @@ SRCS = ft_printf.c ft_putchar.c \
 
 OBJS = $(SRCS:.c=.o)
 
+CC = cc
+
 CFLAGS = -Wall -Wextra -Werror
 
-.c.o:
-	${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
+$(NAME): $(OBJS)
+	@ar -crs $(NAME) $(OBJS)
+	@echo "Created  $(NAME)"
+
+%.o: %.c ft_printf.h Makefile
+	@$(CC) $(CFLAGS) -c $< -o $@
+	@echo "Compiled $<"
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	ar -rcs $(NAME) $(OBJS)
-
 clean:
-	rm -f $(OBJS)
-	rm -f $(NAME)
+	@rm -f $(OBJS)
+	@echo "Cleaned .o's"
 
 fclean: clean
-	rm -f libft.so
+	@rm -f $(NAME)
+	@rm -f libft.so
+	@echo "Cleaned .o's and ${NAME}"
 
 re: fclean all
-
-so: ${OBJS}
-	gcc -shared -o libft.so $(OBJS)
+	@echo "Cleaned"

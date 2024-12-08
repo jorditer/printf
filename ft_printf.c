@@ -6,7 +6,7 @@
 /*   By: jterrada <jterrada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 15:15:58 by jterrada          #+#    #+#             */
-/*   Updated: 2024/11/24 14:18:22 by jterrada         ###   ########.fr       */
+/*   Updated: 2024/12/08 14:19:06 by jterrada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int	ft_printf(const char *format, ...)
 	va_list		args;
 	int			count;
 	int			i;
+	int			temp;
 
 	count = 0;
 	i = 0;
@@ -45,11 +46,14 @@ int	ft_printf(const char *format, ...)
 	{
 		if (format[i] == '%' && format[i + 1])
 		{
-			count += ft_printf_fork(args, format[i + 1]);
+			temp = ft_printf_fork(args, format[i + 1]);
 			i++;
 		}
 		else
-			count += ft_putchar(format[i]);
+			temp = ft_putchar(format[i]);
+		if (temp < 0)
+			return (-1);
+		count += temp;
 		i++;
 	}
 	va_end(args);

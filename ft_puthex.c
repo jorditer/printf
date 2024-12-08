@@ -16,6 +16,7 @@
 int	ft_put_x(unsigned long nb, char *alpha)
 {
 	int	count;
+	int	temp;
 
 	count = 0;
 	if (nb > 15)
@@ -24,9 +25,13 @@ int	ft_put_x(unsigned long nb, char *alpha)
 		count += ft_put_x(nb % 16, alpha);
 	}
 	else
-		count += ft_putchar(alpha[nb]);
-	if (count < 0)
-		return (-1);
+	{
+		temp = ft_putchar(alpha[nb]);
+		if (temp < 0)
+			return (-1);
+		else
+			count += temp;
+	}
 	return (count);
 }
 
@@ -40,22 +45,6 @@ int	ft_puthex(unsigned int nb, int type)
 		alpha = "0123456789ABCDEF";
 	return (ft_put_x(nb, alpha));
 }
-
-// int	ft_put_x(unsigned long n)
-// {
-// 	int		size;
-
-// 	// if (n > LONG_MAX)
-// 	// 	return (-1);
-// 	size = 0;
-// 	if (n >= 16)
-// 		size += ft_put_x(n / 16);
-// 	if (n % 16 < 10)
-// 		size += ft_putchar(n % 16 + '0');
-// 	else
-// 		size += ft_putchar(n % 16 - 10 + 'a');
-// 	return (size);
-// }
 
 // #include <stdio.h>
 // int main(void)
