@@ -26,8 +26,9 @@ clean:
 
 fclean: clean
 	@rm -f $(NAME)
-	@rm -f libft.so
 	@echo "Cleaned .o's and ${NAME}"
 
 re: fclean all
-	@echo "Cleaned"
+	@echo "Rebuilt"
+
+.PHONY: all clean fclean re

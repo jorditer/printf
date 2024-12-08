@@ -6,7 +6,7 @@
 /*   By: jterrada <jterrada@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 15:15:58 by jterrada          #+#    #+#             */
-/*   Updated: 2024/12/08 14:19:06 by jterrada         ###   ########.fr       */
+/*   Updated: 2024/12/08 15:14:40 by jterrada         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,8 @@ static int	ft_printf_fork(va_list args, const char c)
 		return (ft_putpointer(va_arg(args, void *)));
 	else if (c == 'u')
 		return (ft_putunsigned(va_arg(args, unsigned int)));
-	else if (c == '%')
-		return (ft_putchar('%'));
 	else
-		return (-1);
+		return (ft_putchar('%'));
 }
 
 int	ft_printf(const char *format, ...)
@@ -63,10 +61,6 @@ int	ft_printf(const char *format, ...)
 // #include <stdio.h>
 // int	main(void)
 // {
-// 	int a = 5;
-// 	char s[] = "test";
-// 	unsigned int b = 19;
-
-// 	printf("%p\n%p\n%p", &a, &b, s);
-// 	ft_printf("\n%p\n%p\n%p", &a, &b, s);
+// 	printf("testing test %z\n");
+// 	ft_printf("testing test %z\n");
 // }
